@@ -1,3 +1,6 @@
+/**
+ * ----------mod-visible----------
+ */
 mod my_mod {
     fn private_function() {
         println!("called `my_mod::private_function()`");
@@ -59,6 +62,41 @@ fn function() {
     println!("called `function()`");
 }
 
+/**
+ * ----------struct-visible----------
+ */
+
+mod my {
+    pub struct OpenBox<T> {
+        pub contents: T,
+    }
+
+    #[allow(dead_code)]
+    pub struct ClosedBox<T> {
+        pub constants: T,
+    }
+
+    impl <T> ClosedBox<T> {
+        pub fn new(constants: T) -> ClosedBox<T> {
+            ClosedBox { constants }
+        }
+    }
+}
+
+/**
+ * ----------use----------
+ */
+
+use deeply::nested::function as other_function;
+
+mod deeply {
+    pub mod nested {
+        pub fn function() {
+            println!("called `deeply::nested::function()`")
+        }
+    }
+}
+
 fn main() {
     function();
     my_mod::function();
@@ -76,4 +114,22 @@ fn main() {
     // my_mod::nested::private_function();
 
     // my_mod::private_nested::function();
+
+    //------------------
+    let open_box = my::OpenBox{ contents: "public information" };
+    println!("The open box contains: {}", open_box.contents);
+
+    let _closed_box = my::ClosedBox::new("classified information");
+
+
+    //-------------------
+    other_function();
+    println!("Entering block");
+    {
+        use deeply::nested::function;
+        function(); // -> deeply::nested::function cover function in this block
+
+        println!("Leaving block");
+    }
+    function();
 }
