@@ -97,6 +97,46 @@ mod deeply {
     }
 }
 
+/**
+ * ----------self and super----------
+ */
+
+mod cool {
+    pub fn function() {
+        println!("called `cool::function()`");
+    }
+}
+
+mod my2 {
+    fn function() {
+        println!("called `my2::function()`");
+    }
+
+
+    mod cool {
+        pub fn function() {
+            println!("called `my2::cool::function()`");
+        }
+    }
+
+
+    pub fn indirect_call() {
+        print!("called `my2::indirect_call()`, that\n > ");
+        
+        self::function();
+        function();
+
+        self::cool::function();
+
+        super::function();
+
+        {
+            use crate::cool::function as root_function;
+            root_function();
+        }
+    }
+}
+
 fn main() {
     function();
     my_mod::function();
@@ -132,4 +172,7 @@ fn main() {
         println!("Leaving block");
     }
     function();
+
+    //--------------------
+    my2::indirect_call();
 }
