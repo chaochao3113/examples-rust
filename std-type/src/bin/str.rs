@@ -28,4 +28,22 @@ fn main() {
 
     println!("Alice says: {}", alice);
     println!("Bob says: {}", bob);
+
+    let be = "I`m writing \x52\x75\x73\x74!";
+    println!("{}", be);
+
+    let unicode_code = "\u{211D}";
+    let char_name = "\"Double-struck capital R\"";
+
+    println!("{}, {}", unicode_code, char_name);
+
+    let long_str = "String literals
+                can span multiple lines.
+                The linebreak and indentation here ->\
+                <- can be escaped too!";
+
+    println!("{}", long_str);
+
+    
+
 }
