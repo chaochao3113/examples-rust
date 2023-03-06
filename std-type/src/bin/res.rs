@@ -41,8 +41,8 @@ fn op(x: f64, y: f64) -> f64 {
             Ok(ln) => match checked::sqrt(ln) {
                 Err(why) => panic!("{:?}", why),
                 Ok(sqrt) => sqrt,
-            }
-        }
+            },
+        },
     }
 }
 

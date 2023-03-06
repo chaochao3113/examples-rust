@@ -1,5 +1,5 @@
 fn checked_division(dividend: i32, divisor: i32) -> Option<i32> {
-    if divisor == 0{
+    if divisor == 0 {
         None
     } else {
         Some(dividend / divisor)
@@ -24,7 +24,11 @@ fn main() {
     let optional_float = Some(0f32);
 
     // 解包 `Some` 将取出被包装的值。
-    println!("{:?} unwraps to {:?}", optional_float, optional_float.unwrap());
+    println!(
+        "{:?} unwraps to {:?}",
+        optional_float,
+        optional_float.unwrap()
+    );
 
     // 解包 `None` 将会引发 `panic!`。
     println!("{:?} unwraps to {:?}", none, none.unwrap());

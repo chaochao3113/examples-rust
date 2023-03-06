@@ -22,7 +22,7 @@ fn main() {
     }
 
     for x in xs.iter_mut() {
-        *x *=3; 
+        *x *= 3;
     }
 
     println!("{:?}", xs);

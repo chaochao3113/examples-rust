@@ -2,7 +2,6 @@ fn main() {
     let pangram: &'static str = "xxxx   xxxxx  xxxx ";
     println!("{}", pangram);
 
-
     for word in pangram.split_whitespace().rev() {
         println!("{}", word);
     }
@@ -43,7 +42,4 @@ fn main() {
                 <- can be escaped too!";
 
     println!("{}", long_str);
-
-    
-
 }

@@ -42,11 +42,14 @@ mod checked {
 
     pub fn op(x: f64, y: f64) {
         match op_(x, y) {
-            Err(why) => panic!("{}", match why {
-                MathError::NegativeLogarithm => "1",
-                MathError::DivisionByZero => "2",
-                MathError::NegativeSquareRoot => "3",
-            }),
+            Err(why) => panic!(
+                "{}",
+                match why {
+                    MathError::NegativeLogarithm => "1",
+                    MathError::DivisionByZero => "2",
+                    MathError::NegativeSquareRoot => "3",
+                }
+            ),
             Ok(val) => println!("{}", val),
         }
     }
