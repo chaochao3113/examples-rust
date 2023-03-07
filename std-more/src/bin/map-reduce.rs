@@ -17,7 +17,7 @@ fn main() {
     for (i, segment) in chunked_data.enumerate() {
         println!("data segment {} is \"{}\"", i, segment);
 
-        children.push(thread::spawn( move || -> u32 {
+        children.push(thread::spawn(move || -> u32 {
             let result = segment
                 .chars()
                 .map(|c| c.to_digit(10).expect("should be a digit"))
